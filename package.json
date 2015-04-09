@@ -1,0 +1,25 @@
+{
+  "name": "email-deduplication",
+  "version": "0.0.0",
+  "description": "This is a solution for an interview question from a company.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hankmccoy/email-deduplication"
+  },
+  "author": "Thomas Beirne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hankmccoy/email-deduplication/issues"
+  },
+  "homepage": "https://github.com/hankmccoy/email-deduplication",
+  "devDependencies": {
+    "mocha": "~2.2.4"
+  }
+}
