@@ -44,15 +44,15 @@ var DeduplicationApp = React.createClass({
     );
   },
   handleUniqueEmailsChange: function (e) {
-    var val = parseInt(e.target.value, 10);
-    this.setState({
-      numUniqueEmails: isNaN(val) ? e.target.value : val
-    });
+    this.updateEmailCount('numUniqueEmails', e.target.value);
   },
   handleDuplicateEmailsChange: function (e) {
-    var val = parseInt(e.target.value, 10);
+    this.updateEmailCount('numDuplicateEmails', e.target.value);
+  },
+  updateEmailCount: function (type, strValue) {
+    var val = Math.min(parseInt(strValue, 10), 50000);
     this.setState({
-      numDuplicateEmails: isNaN(val) ? e.target.value : val
+      [type]: isNaN(val) ? strValue : val
     });
   },
   generateEmails: function () {
