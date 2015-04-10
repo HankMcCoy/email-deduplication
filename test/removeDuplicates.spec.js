@@ -1,14 +1,17 @@
+var _ = require('lodash');
 var assert = require('assert');
-var removeDuplicates = require('../lib/removeDuplicates').fast;
+var generateEmails = require('../src/lib/generateEmails');
+var removeDuplicates = require('../src/lib/removeDuplicates');
 
 describe('removeDuplicates', function () {
-  var listWithDuplicates = ['a', 'b', 'a', 'c', 'b', 'c'];
+  var listWithDuplicates = generateEmails(50000, 100000);
   var startTime = process.hrtime();
   var result = removeDuplicates(listWithDuplicates);
   var timeSpent = process.hrtime(startTime);
+  var uniq = _.unique(listWithDuplicates);
 
   it('should remove duplicates', function () {
-    assert.deepEqual(['a', 'b', 'c'], result);
+    assert.deepEqual(uniq, result);
   });
 
   it('should take less than a second', function () {

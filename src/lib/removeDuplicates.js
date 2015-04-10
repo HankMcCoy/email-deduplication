@@ -1,24 +1,4 @@
-/**
- * An elegant, simple approach. That is also very slow.
- */
-function getWithoutDuplicatesSlow(emails) {
-  var emailsSeen = {};
-  var result = [];
-
-  result = emails.reduce(function (results, email) {
-    results = emailsSeen[email] ? results : results.concat(email);
-    emailsSeen[email] = true;
-
-    return results;
-  }, []);
-
-  return result;
-}
-
-/**
- * A bulkier approach that is way faster.
- */
-function getWithoutDuplicatesFast(emails) {
+function removeDuplicates(emails) {
   var emailsSeen = {};
   var resultIdx = 0;
   var i, curEmail;
@@ -47,7 +27,4 @@ function getWithoutDuplicatesFast(emails) {
   return result;
 }
 
-module.exports = {
-  slow: getWithoutDuplicatesSlow,
-  fast: getWithoutDuplicatesFast
-};
+module.exports = removeDuplicates;
