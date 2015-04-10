@@ -15,7 +15,9 @@ var DeduplicationApp = React.createClass({
   render: function () {
     var allEmails = getListForDisplay(this.state.allEmails);
     var dedupedEmails = getListForDisplay(this.state.dedupedEmails);
-    var displayRuntime = this.state.runtime && this.state.runtime.toFixed(2);
+    var displayRuntime = typeof this.state.runtime === 'number' &&
+      !isNaN(this.state.runtime) &&
+      this.state.runtime.toFixed(2);
 
     return (
       <div className="deduplication-app">
@@ -36,7 +38,7 @@ var DeduplicationApp = React.createClass({
           value={allEmails} />
         <button onClick={this.removeDuplicates}>Remove duplicates</button>
         <label>
-          Results {displayRuntime && '(' + displayRuntime + ' ms)'}
+          Results {displayRuntime && ('(' + displayRuntime + ' ms)')}
         </label>
         <textarea readOnly="true"
           value={dedupedEmails} />
@@ -66,9 +68,9 @@ var DeduplicationApp = React.createClass({
     }
   },
   removeDuplicates: function () {
-    var startTime = performance.now();
+    var startTime = getCurTime();
     var dedupedEmails = removeDuplicates(this.state.allEmails);
-    var runtime = performance.now() - startTime;
+    var runtime = getRuntime(startTime);
 
     this.setState({
       dedupedEmails: dedupedEmails,
@@ -76,6 +78,16 @@ var DeduplicationApp = React.createClass({
     });
   }
 });
+
+function getCurTime() {
+  return performance && performance.now
+    ? performance.now()
+    : new Date().getTime();
+}
+
+function getRuntime(startTime) {
+  return getCurTime() - startTime;
+}
 
 function getListForDisplay(arr) {
   var limitedList = arr.slice(0, 100);
