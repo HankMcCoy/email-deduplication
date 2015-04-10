@@ -8,10 +8,10 @@ describe('removeDuplicates', function () {
   var startTime = process.hrtime();
   var result = removeDuplicates(listWithDuplicates);
   var timeSpent = process.hrtime(startTime);
-  var uniq = _.unique(listWithDuplicates);
+  var uniqueEmails = _.unique(listWithDuplicates);
 
   it('should remove duplicates', function () {
-    assert.deepEqual(uniq, result);
+    assert.deepEqual(uniqueEmails, result);
   });
 
   it('should take less than a second', function () {
