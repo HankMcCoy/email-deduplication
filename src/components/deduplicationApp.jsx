@@ -80,8 +80,8 @@ var DeduplicationApp = React.createClass({
 });
 
 function getCurTime() {
-  return performance && performance.now
-    ? performance.now()
+  return window.performance && window.performance.now
+    ? window.performance.now()
     : new Date().getTime();
 }
 
