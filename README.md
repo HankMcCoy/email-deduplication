@@ -9,4 +9,4 @@ demonstrating the algorithm and a small test suite to verify correct
 behavior. I use lodash's `unique` method as a reference implementation
 to verify off of.
 
-The React demo app can be seen at [on my website](http://thomasbeirne/string-deduplication).
+The React demo app can be seen [on my website](http://thomasbeirne/string-deduplication).
